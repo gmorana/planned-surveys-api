@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0014DC" />
-    <title>Planned surveys to xml (WITSML)</title>
+    <title>Planned surveys to xml</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="alternate icon" href="favicon.svg" />
     <style>
@@ -46,21 +46,25 @@
       }
       body {
         margin: 0;
-        padding: 20px 28px 32px;
+        padding: 20px 28px 72px;
         min-width: 960px;
         font-style: normal;
       }
       .top-bar {
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: end;
         gap: 16px;
         margin-bottom: 28px;
         min-height: 98px;
+        position: relative;
       }
       .page-title {
         margin: 0;
-        flex: 1;
+        grid-column: 1 / -1;
+        grid-row: 1;
+        justify-self: center;
+        text-align: center;
         font-family: "SLB Sans Bold", "SLB Sans", Aptos, "Segoe UI", Arial, sans-serif;
         font-size: 22px;
         font-weight: 400;
@@ -69,12 +73,27 @@
         line-height: 1.25;
         padding: 0 0 10px;
         letter-spacing: 0.01em;
+        max-width: min(100%, 640px);
       }
       .top-bar-right {
         display: flex;
         align-items: flex-start;
         gap: 12px;
         flex-shrink: 0;
+        grid-column: 3;
+        grid-row: 1;
+        justify-self: end;
+        align-self: end;
+      }
+      .session-footer {
+        position: fixed;
+        right: 28px;
+        bottom: 20px;
+        z-index: 20;
+        pointer-events: none;
+      }
+      .session-footer .user-menu {
+        pointer-events: auto;
       }
       .user-menu {
         display: flex;
@@ -223,7 +242,7 @@
   </head>
   <body>
     <header class="top-bar">
-      <h1 class="page-title">Planned surveys to xml (WITSML)</h1>
+      <h1 class="page-title">Planned surveys to xml</h1>
       <div class="top-bar-right">
         <div class="top-actions">
           <div class="action-wrap">
@@ -284,6 +303,8 @@
       </table>
     </section>
 
+    <footer class="session-footer" aria-label="Session"></footer>
+
     <script>
       (function () {
         function isStaticPublicConverter() {
@@ -305,8 +326,8 @@
           return;
         }
 
-        var topRight = document.querySelector(".top-bar-right");
-        if (!topRight) return;
+        var sessionFooter = document.querySelector(".session-footer");
+        if (!sessionFooter) return;
 
         var menu = document.createElement("div");
         menu.className = "user-menu";
@@ -318,7 +339,7 @@
         logout.textContent = "Sign out";
         menu.appendChild(email);
         menu.appendChild(logout);
-        topRight.insertBefore(menu, topRight.firstChild);
+        sessionFooter.appendChild(menu);
 
         fetch("/api/auth/me", { credentials: "same-origin" })
           .then(function (r) {
