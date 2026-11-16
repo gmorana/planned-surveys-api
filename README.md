@@ -1,6 +1,7 @@
 # Planned Surveys XML API
 
 HTTP service that replicates the Excel macro **Convert_and_Generate_XML_UTF8** from *Planned surveys generator* (sheet **Data**, rows from row 4).
+#Version: 1.0.0
 
 ## Columns (Excel → JSON)
 
