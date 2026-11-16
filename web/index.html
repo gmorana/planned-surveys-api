@@ -53,41 +53,47 @@
         font-style: normal;
       }
       .site-banner {
-        display: grid;
-        grid-template-columns: minmax(120px, auto) 1fr minmax(56px, auto);
+        display: flex;
         align-items: center;
+        justify-content: space-between;
         gap: 16px;
         background: var(--slb-header);
-        padding: 14px 28px;
+        padding: 12px 28px;
         margin-bottom: 24px;
+      }
+      .banner-brand {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        min-width: 0;
       }
       .brand-logo {
         display: flex;
         align-items: center;
         line-height: 0;
+        flex-shrink: 0;
       }
       .brand-logo img {
         display: block;
-        height: 40px;
+        height: 80px;
         width: auto;
       }
       .banner-title {
         margin: 0;
-        justify-self: center;
-        text-align: center;
+        text-align: left;
         font-family: "SLB Sans Bold", "SLB Sans", Aptos, "Segoe UI", Arial, sans-serif;
         font-size: 22px;
         font-weight: 400;
         color: #fff;
         line-height: 1.25;
-        padding: 10px 28px;
-        border: 1px solid #fff;
+        padding: 0;
+        border: none;
         letter-spacing: 0.01em;
         white-space: nowrap;
       }
       .session-slot {
-        justify-self: end;
         position: relative;
+        flex-shrink: 0;
         min-width: 52px;
         min-height: 52px;
       }
@@ -241,15 +247,10 @@
       .preview-wrap {
         width: 100%;
       }
-      .preview-header-row {
+      .actions-row {
         display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-        gap: 16px;
-        margin-bottom: 8px;
-      }
-      .preview-header-row .section-title {
-        margin: 0;
+        justify-content: flex-end;
+        margin-bottom: 20px;
       }
       table {
         width: 100%;
@@ -292,28 +293,17 @@
   </head>
   <body>
     <header class="site-banner">
-      <div class="brand-logo" aria-label="SLB">
-        <img src="slb-logo-white.png" width="140" height="40" alt="SLB" />
+      <div class="banner-brand">
+        <div class="brand-logo" aria-label="SLB">
+          <img src="slb-logo-white.png" width="280" height="80" alt="SLB" />
+        </div>
+        <h1 class="banner-title">Planned surveys to xml</h1>
       </div>
-      <h1 class="banner-title">Planned surveys to xml</h1>
       <div class="session-slot" id="sessionSlot" aria-label="Session"></div>
     </header>
 
     <main class="page-content">
-    <section>
-      <h2 class="section-title">Paste the columns here</h2>
-      <textarea
-        id="pasteArea"
-        rows="1"
-        spellcheck="false"
-        placeholder=""
-        aria-label="Paste the columns here"
-      ></textarea>
-    </section>
-
-    <section class="preview-wrap">
-      <div class="preview-header-row">
-        <h2 class="section-title">Preview in csv</h2>
+      <div class="actions-row">
         <div class="bottom-actions">
           <div class="action-wrap">
             <span class="action-label">Export as xml</span>
@@ -329,7 +319,21 @@
           </div>
         </div>
       </div>
-      <table id="previewTable">
+
+      <section>
+        <h2 class="section-title">Paste the columns here</h2>
+        <textarea
+          id="pasteArea"
+          rows="1"
+          spellcheck="false"
+          placeholder=""
+          aria-label="Paste the columns here"
+        ></textarea>
+      </section>
+
+      <section class="preview-wrap">
+        <h2 class="section-title">Preview in csv</h2>
+        <table id="previewTable">
         <thead>
           <tr id="headerNames">
             <th>md</th>
