@@ -55,7 +55,7 @@ Do **not** use `https://worktopublic.github.io/login`; `/login` is only on **Fas
 
 That URL serves **static** `index.html` (paste survey → `Planned_surveys_.xml`). It does **not** support `/login`, `/app`, or `/api/auth/login` (those need the Python app).
 
-For **SLB login + `/app`**, use Render (`render.yaml`), Azure (`azure-deploy.yml`), or local `uvicorn` on port **8000**.
+For **SLB login + `/app`**, use Render (`render.yaml`), Azure (`.github/workflows/main_planned-surveys.yml` via Deployment Center), or local `uvicorn` on port **8000**.
 
 ## 4. Later updates
 

@@ -193,11 +193,14 @@ Infrastructure: `infra/main.bicep` (Linux App Service, Python 3.12, HTTPS).
 3. Deployment Center → deploy `app`, `requirements.txt` (not `.venv`).
 4. Verify `https://<appName>.azurewebsites.net/health`.
 
-### Option C — GitHub Actions
+### Option C — GitHub Actions (recommended after linking Azure)
 
-1. Push to GitHub.
-2. Publish profile → secret `AZURE_WEBAPP_PUBLISH_PROFILE`.
-3. Run workflow **Deploy to Azure App Service**.
+1. Azure Portal → Web App → **Deployment Center** → connect **GitHub** (`main` branch). Azure adds [`.github/workflows/main_planned-surveys.yml`](.github/workflows/main_planned-surveys.yml) and a publish-profile secret.
+2. **Push to `main`** (or run that workflow manually) to deploy the full app (`app/`, `web/`, `requirements.txt`).
+3. Set SLB env vars on the Web App and register `https://<appName>.azurewebsites.net/api/callback` in the SLB portal.
+4. Verify `https://<appName>.azurewebsites.net/health`.
+
+**Note:** [`github-pages.yml`](.github/workflows/github-pages.yml) still publishes static `web/` only; it does not replace this Azure pipeline.
 
 ---
 

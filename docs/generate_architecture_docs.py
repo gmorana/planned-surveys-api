@@ -249,7 +249,7 @@ def build_pptx(metrics: dict[str, object]) -> None:
         "CI/CD",
         [
             "github-pages.yml — push main → upload-pages-artifact path web → GitHub Pages",
-            "azure-deploy.yml — workflow_dispatch + AZURE_WEBAPP_PUBLISH_PROFILE",
+            "main_planned-surveys.yml — push main → Azure (Deployment Center publish profile)",
             "deploy-azure.ps1 — az deployment group create + webapp deploy zip",
             "Zip package: app, requirements.txt, startup.sh (script may omit web/ — include for UI)",
         ],
@@ -476,7 +476,7 @@ def build_docx(metrics: dict[str, object]) -> None:
         ["Workflow", "Trigger", "Artifact"],
         ["github-pages.yml", "push main", "web/ → GitHub Pages"],
         ["github-pages-branch.yml", "manual", "gh-pages branch fallback"],
-        ["azure-deploy.yml", "workflow_dispatch", "Full repo → Azure Web App"],
+        ["main_planned-surveys.yml", "push main", "Full repo → Azure Web App (planned-surveys)"],
     ]
     _doc_table(doc, cicd[0], cicd[1:])
 
